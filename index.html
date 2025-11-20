@@ -6,82 +6,243 @@
   <title>Demo Bot - FAQs</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; background: #f0f4f8; margin: 0; padding: 0; }
-    header { background: #0078d7; color: white; padding: 30px 20px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    :root {
+      --brand: #0078d7;
+      --bg: #f0f4f8;
+      --text: #333;
+      --muted: #555;
+      --card: #fff;
+      --border: #eaeaea;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; }
+    header {
+      background: var(--brand);
+      color: #fff;
+      padding: 36px 20px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    header .cta {
+      display: inline-block; margin-top: 12px;
+      background: #fff; color: var(--brand);
+      padding: 10px 18px; border-radius: 8px; font-weight: 600; text-decoration: none;
+    }
     section { padding: 40px 20px; max-width: 1000px; margin: auto; }
-    h2 { font-size: 1.6em; color: #333; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-    .features { display: flex; justify-content: space-around; flex-wrap: wrap; }
-    .feature-card { flex:1; min-width:250px; margin:20px; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
-    .faq { margin: 20px 0; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-    .faq-question { font-weight: 600; cursor: pointer; position: relative; padding-right: 25px; }
-    .faq-question::after { content: "➕"; position: absolute; right: 0; top: 0; font-size: 1em; color: #0078d7; }
-    .faq.open .faq-question::after { content: "➖"; }
-    .faq-answer { display: none; margin-top: 10px; color: #555; line-height: 1.6; }
-    .faq.open .faq-answer { display: block; }
-    footer { background:#0078d7; color:white; text-align:center; padding:20px; margin-top:40px; }
-    a { color:#0078d7; text-decoration:none; }
+    h2 {
+      font-size: 1.6em; color: var(--text);
+      margin-bottom: 16px; border-bottom: 2px solid var(--border); padding-bottom: 10px;
+    }
+    h3 { color: var(--brand); margin-top: 28px; }
+    .features { display: flex; gap: 20px; flex-wrap: wrap; }
+    .feature-card {
+      flex: 1 1 280px; background: var(--card); padding: 20px; border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    /* FAQ using details/summary */
+    .faq-group { background: var(--card); padding: 24px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    details { border-bottom: 1px solid var(--border); padding: 12px 0; }
+    details:last-child { border-bottom: none; }
+    summary {
+      cursor: pointer; font-weight: 600; color: var(--text); list-style: none; position: relative; padding-right: 26px;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "➕"; position: absolute; right: 0; top: 0; color: var(--brand); font-size: 1em;
+    }
+    details[open] summary::after { content: "➖"; }
+    .answer { margin-top: 10px; color: var(--muted); line-height: 1.6; }
+
+    footer { background: var(--brand); color: #fff; text-align: center; padding: 20px; margin-top: 40px; }
+    a { color: var(--brand); text-decoration: none; }
+    .note { font-style: italic; color: #666; margin-bottom: 16px; }
+    @media (max-width: 640px) { header h1 { font-size: 1.4rem; } }
   </style>
 </head>
 <body>
-  <!-- Hero Banner -->
+  <!-- Hero -->
   <header>
     <h1>Welcome to Demo Bot</h1>
     <p>Your smart assistant for orders, returns, and support.</p>
-    <a href="#faqs" style="background:white; color:#0078d7; padding:10px 20px; border-radius:6px; text-decoration:none; font-weight:bold;">Explore FAQs</a>
+    <a class="cta" href="#faqs">Explore FAQs</a>
   </header>
 
-  <!-- About Section -->
+  <!-- About -->
   <section>
     <h2>About Demo Bot</h2>
-    <p>Demo Bot is designed to simplify your shopping experience. From tracking orders to managing returns, we’ve got you covered with instant answers and 24/7 support.</p>
+    <p>Demo Bot streamlines your shopping experience. From tracking orders to managing returns, get instant guidance and 24/7 support with a clean, intuitive interface.</p>
   </section>
 
-  <!-- Features Section -->
+  <!-- Features -->
   <section style="background:#f9fbfc;">
     <h2>Features</h2>
     <div class="features">
-      <div class="feature-card"><h3>📦 Order Management</h3><p>Cancel, modify, or track your orders with ease.</p></div>
-      <div class="feature-card"><h3>💳 Secure Payments</h3><p>Multiple payment options with encryption for safety.</p></div>
-      <div class="feature-card"><h3>🚚 Fast Delivery</h3><p>Track shipments in real time and schedule delivery slots.</p></div>
+      <div class="feature-card"><h3>📦 Order management</h3><p>Cancel, modify, or track your orders in seconds.</p></div>
+      <div class="feature-card"><h3>💳 Secure payments</h3><p>Cards, UPI, wallets, net banking — protected with encryption.</p></div>
+      <div class="feature-card"><h3>🚚 Fast delivery</h3><p>Real-time tracking and flexible delivery slots for select locations.</p></div>
     </div>
   </section>
 
-  <!-- FAQ Section -->
+  <!-- FAQs -->
   <section id="faqs">
-    <h2>Frequently Asked Questions</h2>
-    <p style="font-style: italic; color: #666;">Click on a question to view the answer.</p>
+    <h2>Frequently asked questions</h2>
+    <p class="note">Click a question to view the answer.</p>
 
     <!-- Account & Order History -->
-    <h3>Account & Order History</h3>
-    <div class="faq"><div class="faq-question">How can I view my order history?</div><div class="faq-answer">Just log in and go to "My Orders". Everything's neatly listed there.</div></div>
-    <div class="faq"><div class="faq-question">Can I cancel my order after placing it?</div><div class="faq-answer">Yes, you can cancel your order as long as it hasn't been delivered.</div></div>
-    <div class="faq"><div class="faq-question">Is there a time limit for cancelling an order?</div><div class="faq-answer">Orders can typically be cancelled within the delivery status of placement.</div></div>
-    <div class="faq"><div class="faq-question">Can I cancel part of my order?</div><div class="faq-answer">Yes, if your order contains multiple items, you can cancel individual items before they are shipped.</div></div>
+    <h3>Account & order history</h3>
+    <div class="faq-group">
+      <details>
+        <summary>How can I view my order history?</summary>
+        <div class="answer">Log in and open “My Orders” to see all past and current orders in one place.</div>
+      </details>
+      <details>
+        <summary>Can I cancel my order after placing it?</summary>
+        <div class="answer">Yes — you can cancel as long as the order hasn’t been delivered. If shipped, initiate a return.</div>
+      </details>
+      <details>
+        <summary>Is there a time limit for cancelling an order?</summary>
+        <div class="answer">Cancellation is typically allowed until the order moves beyond processing. Exact windows may vary by product.</div>
+      </details>
+      <details>
+        <summary>Can I cancel part of my order?</summary>
+        <div class="answer">Yes. For multi‑item orders, you can cancel individual items before they are shipped.</div>
+      </details>
+    </div>
 
     <!-- Offers & Loyalty -->
-    <h3>Offers & Loyalty</h3>
-    <div class="faq"><div class="faq-question">Do you have a loyalty program or rewards?</div><div class="faq-answer">We don’t have any rewards at the moment.</div></div>
-    <div class="faq"><div class="faq-question">Are there any ongoing promotions?</div><div class="faq-answer">We don’t have any active promotions right now, but great deals are always around the corner.</div></div>
-    <div class="faq"><div class="faq-question">Can I gift wrap my order?</div><div class="faq-answer">Yes, gift wrapping is available for select items at checkout.</div></div>
+    <h3>Offers & loyalty</h3>
+    <div class="faq-group">
+      <details>
+        <summary>Do you have a loyalty program or rewards?</summary>
+        <div class="answer">Not at the moment. Stay tuned — perks and rewards may be introduced in future.</div>
+      </details>
+      <details>
+        <summary>Are there any ongoing promotions?</summary>
+        <div class="answer">No active promotions right now, but new deals are added regularly.</div>
+      </details>
+      <details>
+        <summary>Can I gift wrap my order?</summary>
+        <div class="answer">Yes, gift wrapping is available for select items during checkout.</div>
+      </details>
+    </div>
 
     <!-- Order Management -->
-    <h3>Order Management</h3>
-    <div class="faq"><div class="faq-question">My order has already shipped. Can I still cancel it?</div><div class="faq-answer">Unfortunately, shipped orders cannot be cancelled. You can initiate a return instead.</div></div>
-    <div class="faq"><div class="faq-question">Can I cancel my order?</div><div class="faq-answer">Yes, if it hasn’t been delivered yet. Go to the 'Main Menu,' select 'Cancel,' choose the item, provide a reason, and follow the instructions.</div></div>
-    <div class="faq"><div class="faq-question">How do I modify my order?</div><div class="faq-answer">Contact support immediately. Changes are only possible before shipping.</div></div>
-    <div class="faq"><div class="faq-question">What happens if I ordered the wrong item?</div><div class="faq-answer">You can cancel or return it once delivered. Contact support for help.</div></div>
-    <div class="faq"><div class="faq-question">Can I add items to an existing order?</div><div class="faq-answer">No, but you can place a new order. Bundled checkout options are coming soon.</div></div>
-    <div class="faq"><div class="faq-question">Will I be charged for cancellations?</div><div class="faq-answer">No cancellation fee if done before shipping. After shipping, return policies apply.</div></div>
+    <h3>Order management</h3>
+    <div class="faq-group">
+      <details>
+        <summary>My order has already shipped. Can I still cancel it?</summary>
+        <div class="answer">Shipped orders can’t be cancelled, but you can create a return request after delivery.</div>
+      </details>
+      <details>
+        <summary>Can I cancel my order?</summary>
+        <div class="answer">Yes. Go to Main Menu → Cancel → choose item → provide a reason → confirm to cancel.</div>
+      </details>
+      <details>
+        <summary>How do I modify my order?</summary>
+        <div class="answer">Contact support immediately. Modifications are only possible before shipping.</div>
+      </details>
+      <details>
+        <summary>What happens if I ordered the wrong item?</summary>
+        <div class="answer">You can cancel before shipping or return/exchange after delivery. Support can guide you.</div>
+      </details>
+      <details>
+        <summary>Can I add items to an existing order?</summary>
+        <div class="answer">Not to the same order. Place a new order. Bundled checkout options may come later.</div>
+      </details>
+      <details>
+        <summary>Will I be charged for cancellations?</summary>
+        <div class="answer">No fee if cancelled before shipping. After shipping, standard return policies apply.</div>
+      </details>
+    </div>
 
     <!-- Order Status & Tracking -->
-    <h3>Order Status & Tracking</h3>
-    <div class="faq"><div class="faq-question">How long does it take to process an order?</div><div class="faq-answer">Most orders are processed within 24–48 hours. Delays may occur during peak seasons.</div></div>
-    <div class="faq"><div class="faq-question">Why was my order cancelled?</div><div class="faq-answer">Possible reasons include payment failure, stock unavailability, or address issues. You’ll receive a notification with details.</div></div>
-    <div class="faq"><div class="faq-question">My order shows delivered but I haven’t received it. What should I do?</div><div class="faq-answer">Please connect with a live agent for assistance.</div></div>
-    <div class="faq"><div class="faq-question">Why hasn’t my tracking number updated yet?</div><div class="faq-answer">Tracking updates may take up to 24 hours after dispatch.</div></div>
-    <div class="faq"><div class="faq-question">Can I change the delivery address after placing an order?</div><div class="faq-answer">Address changes are only possible before the order is shipped. Connect with live agents for help.</div></div>
+    <h3>Order status & tracking</h3>
+    <div class="faq-group">
+      <details>
+        <summary>How long does it take to process an order?</summary>
+        <div class="answer">Most orders process within 24–48 hours. Peak times may introduce delays.</div>
+      </details>
+      <details>
+        <summary>Why was my order cancelled?</summary>
+        <div class="answer">Common reasons: payment failure, stock issues, or address problems. A notification is sent with details.</div>
+      </details>
+      <details>
+        <summary>My order shows delivered but I haven’t received it. What should I do?</summary>
+        <div class="answer">Contact a live agent. We’ll investigate and resolve it quickly.</div>
+      </details>
+      <details>
+        <summary>Why hasn’t my tracking number updated yet?</summary>
+        <div class="answer">Tracking can take up to 24 hours to update after dispatch.</div>
+      </details>
+      <details>
+        <summary>Can I change the delivery address after placing an order?</summary>
+        <div class="answer">Address changes are possible only before shipping. Reach out to live support.</div>
+      </details>
+    </div>
 
     <!-- Payment -->
     <h3>Payment</h3>
-    <div class="faq"><div class="faq-question">What payment methods do you accept?</div><div class="faq-answer">We accept cards, UPI, wallets, and net banking.</div></div>
-    <div class="faq"><div class="faq-question">Is it safe to enter my card details online?</div><div class="faq-answer">Yes, your
+    <div class="faq-group">
+      <details>
+        <summary>What payment methods do you accept?</summary>
+        <div class="answer">Cards, UPI, wallets, and net banking are accepted.</div>
+      </details>
+      <details>
+        <summary>Is it safe to enter my card details online?</summary>
+        <div class="answer">Yes. Payments are protected with secure encryption and industry‑standard practices.</div>
+      </details>
+    </div>
+
+    <!-- Returns, Refund & Exchanges -->
+    <h3>Returns, refund & exchanges</h3>
+    <div class="faq-group">
+      <details>
+        <summary>What is your return policy?</summary>
+        <div class="answer">Eligible items can be returned within 7 days of delivery unless specified otherwise on the product page.</div>
+      </details>
+      <details>
+        <summary>How long does it take to process a refund?</summary>
+        <div class="answer">Refunds typically take 5–7 business days after the returned item is received.</div>
+      </details>
+      <details>
+        <summary>Will I be charged for return shipping?</summary>
+        <div class="answer">Return shipping is free for eligible items. Some categories may have a small fee.</div>
+      </details>
+      <details>
+        <summary>What if I received a damaged or wrong item?</summary>
+        <div class="answer">Connect with a live agent. We’ll assist with replacement or a refund.</div>
+      </details>
+    </div>
+
+    <!-- Shipping & Delivery -->
+    <h3>Shipping & delivery</h3>
+    <div class="faq-group">
+      <details>
+        <summary>Do you ship internationally?</summary>
+        <div class="answer">Yes, international shipping is available for select items.</div>
+      </details>
+      <details>
+        <summary>Can I schedule a delivery time?</summary>
+        <div class="answer">For eligible locations, choose a preferred delivery slot at checkout.</div>
+      </details>
+      <details>
+        <summary>What if my package is lost or damaged?</summary>
+        <div class="answer">Contact support immediately. We’ll investigate and arrange a replacement or refund.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section>
+    <h2>Contact</h2>
+    <p>Questions or feedback? Reach out anytime.</p>
+    <p>Email: <a href="mailto:likhin@techm.com">likhin@techm.com</a> • Phone: +91 682345759</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Demo Bot. All rights reserved.</p>
+  </footer>
+</body>
+</html>
